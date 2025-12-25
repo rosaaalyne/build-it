@@ -1,68 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>WebRTC Meet</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0b1320;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .container {
+      background-color: #0b1320;
+      padding: 30px 20px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+      text-align: center;
+    }
+
+    h2 {
+      color: #3b82f6;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin: 12px 0;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid white;
+      outline: none;
+      background-color: #0b1320;
+      color: white;
+      font-size: 14px;
+    }
+
+    .input-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Fancy button */
+    button {
+      position: relative;
+      width: 100%;
+      padding: 12px 0;
+      border-radius: 7px;
+      border: 1px solid #3b82f6;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: transparent;
+      color: #fff;
+      overflow: hidden;
+      cursor: pointer;
+      margin-top: 18px;
+      transition: all 0.2s ease-in;
+    }
+
+    button:hover {
+      background: #3b82f6;
+      box-shadow: 0 0 30px 5px rgba(59, 130, 246, 0.8);
+    }
+
+    button::before {
+      content: '';
+      display: block;
+      width: 0px;
+      height: 86%;
+      position: absolute;
+      top: 7%;
+      left: 0%;
+      opacity: 0;
+      background: #fff;
+      box-shadow: 0 0 50px 30px #fff;
+      transform: skewX(-20deg);
+    }
+
+    button:hover::before {
+      animation: sh02 0.5s linear;
+    }
+
+    @keyframes sh02 {
+      from { opacity: 0; left: 0%; }
+      50% { opacity: 1; }
+      to { opacity: 0; left: 100%; }
+    }
+
+    .login-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .login-text a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-<!-- ================= HOME VIEW ================= -->
-<section id="homeView" class="view">
-  <header class="home-header">
-    <h1>WebRTC Meet</h1>
-    <p>Select a contact to start a video call</p>
-  </header>
-
-  <div class="friends-list">
-    <div class="friend-card" onclick="startCall('wassim')">
-      <div class="avatar">W</div>
-      <div class="info">
-        <span class="name">wassim</span>
-        <span class="status">Online</span>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form>
+      <div class="input-group">
+        <input type="text" placeholder="Name" required>
       </div>
-    </div>
 
-    <div class="friend-card" onclick="startCall('amine')">
-      <div class="avatar">A</div>
-      <div class="info">
-        <span class="name">amine</span>
-        <span class="status">Online</span>
+      <div class="input-group">
+        <input type="email" placeholder="Email" required>
       </div>
-    </div>
 
-    <div class="friend-card" onclick="startCall('malak')">
-      <div class="avatar">M</div>
-      <div class="info">
-        <span class="name">malak</span>
-        <span class="status offline">Offline</span>
+      <div class="input-group">
+        <input type="password" placeholder="Password" required>
       </div>
+
+      <div class="input-group">
+        <input type="password" placeholder="Confirm Password" required>
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div class="login-text">
+      Already have an account?
+      <a href="#">Login</a>
     </div>
   </div>
-  
-</section>
 
-<!-- ================= MEETING VIEW ================= -->
-<section id="meetingView" class="view hidden">
-
-  <header class="meeting-header">
-    <span>Secure WebRTC Call</span>
-  </header>
-
-  <div class="video-area">
-    <video id="remoteVideo" autoplay playsinline></video>
-    <video id="localVideo" autoplay muted playsinline class="local-video"></video>
-  </div>
-
-  <footer class="controls">
-    <button id="micBtn" class="control-btn">Mute</button>
-    <button id="camBtn" class="control-btn">Stop Video</button>
-    <button id="leaveBtn" class="control-btn danger">Leave</button>
-  </footer>
-
-</section>
-
-<script src="app.js"></script>
 </body>
 </html>
